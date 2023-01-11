@@ -1,20 +1,32 @@
-//
-//  ViewController.swift
-//  ByteCoin
-//
-//  Created by Angela Yu on 11/09/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, CoinManagerDeletage {
+    
+    
+    
+    @IBOutlet weak var coinRateLabel: UILabel!
+    
+    var coinManager = CoinManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        coinManager.delegate = self
     }
-
-
+    
+    func fetchCoin() {
+        coinManager.fetchCoin(currencyName: "USD")
+        print("you here")
+    }
+    
+    func didUpdateCoin(price: String) {
+        DispatchQueue.main.async {
+            self.coinRateLabel.text = price
+        }
+    }
+    func didFailWithError(error: Error) {
+        print(error)
+    }
 }
+
 

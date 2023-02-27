@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A48E9278296EA29E00E6583D /* CoinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E9277296EA29E00E6583D /* CoinData.swift */; };
 		A48E927A296EA4BC00E6583D /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E9279296EA4BC00E6583D /* CoinModel.swift */; };
+		A4F81D6B29AD1C0E0070C932 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = A4F81D6A29AD1C0E0070C932 /* Readme.md */; };
 		ADA8AC092329367100626376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8AC082329367100626376 /* AppDelegate.swift */; };
 		ADA8AC0B2329367100626376 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8AC0A2329367100626376 /* SceneDelegate.swift */; };
 		ADA8AC0D2329367100626376 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8AC0C2329367100626376 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		A48E9277296EA29E00E6583D /* CoinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinData.swift; sourceTree = "<group>"; };
 		A48E9279296EA4BC00E6583D /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		A4F81D6A29AD1C0E0070C932 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		ADA8AC052329367100626376 /* ByteCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByteCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA8AC082329367100626376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADA8AC0A2329367100626376 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 		ADA8ABFC2329367100626376 = {
 			isa = PBXGroup;
 			children = (
+				A4F81D6A29AD1C0E0070C932 /* Readme.md */,
 				ADA8AC072329367100626376 /* ByteCoin */,
 				ADA8AC062329367100626376 /* Products */,
 			);
@@ -160,6 +163,7 @@
 			files = (
 				ADA8AC152329367300626376 /* LaunchScreen.storyboard in Resources */,
 				ADA8AC122329367300626376 /* Assets.xcassets in Resources */,
+				A4F81D6B29AD1C0E0070C932 /* Readme.md in Resources */,
 				ADA8AC102329367100626376 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

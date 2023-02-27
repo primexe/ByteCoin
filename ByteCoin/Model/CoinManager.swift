@@ -1,63 +1,58 @@
 
 import Foundation
 
-protocol CoinManagerDeletage {
-    func didUpdateCoin(price: String)
+protocol CoinManagerDelegate {
+    func didUpdatePrice(price: String, currency: String)
     func didFailWithError(error: Error)
 }
 
 struct CoinManager {
     
+    var delegate: CoinManagerDelegate?
+    
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
     let apiKey = "8D0E0D36-65EF-49C0-868F-34D3D0025690"
-    
-    var delegate: CoinManagerDeletage?
 
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
-    
-    func fetchCoin(currencyName: String) {
-       let urlString = "\(baseURL)/\(currencyName)?apikey=\(apiKey)"
+    func getCoinPrice(for currency: String) {
+        
+        let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
         print(urlString)
         
-        performRequest(with: urlString)
-    }
-    
-    func performRequest(with urlString: String) {
-        //1 create a URL
         if let url = URL(string: urlString) {
-            //2 create URL session
-            let session = URLSession(configuration: .default)
             
-            // give session a task
-            let task = session.dataTask(with: url) { data, response, error in
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    delegate?.didFailWithError(error: error!)
+                    self.delegate?.didFailWithError(error: error!)
                     return
                 }
+                
                 if let safeData = data {
-                    if let coin = self.parseJSON(safeData) {
-                        let coinString = String(format: "%.2f", coin)
-                        self.delegate?.didUpdateCoin(price: coinString)
+                    if let bitcoinPrice = self.parseJSON(safeData) {
+                        let priceString = String(format: "%.2f", bitcoinPrice)
+                        self.delegate?.didUpdatePrice(price: priceString, currency: currency)
                     }
                 }
             }
-            // 4. resume
             task.resume()
         }
     }
-    func parseJSON(_ coinData: Data) -> Double? {
+    
+    func parseJSON(_ data: Data) -> Double? {
+        
         let decoder = JSONDecoder()
         do {
-            let decodedData = try decoder.decode(CoinData.self, from: coinData)
-            let currency = decodedData.asset_id_quote
-            let rate = decodedData.rate
+            let decodedData = try decoder.decode(CoinData.self, from: data)
+            let lastPrice = decodedData.rate
+            print(lastPrice)
+            return lastPrice
             
-            let coin = CoinModel(currencyName: currency, rateBTC: rate)
-            return rate
         } catch {
             delegate?.didFailWithError(error: error)
             return nil
         }
     }
+    
 }
